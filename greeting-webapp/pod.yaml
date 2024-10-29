@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: banxico-greeting-pod
+spec:
+  containers:
+    - name: greeting-container
+      image: neucast/greeting-sample:latest
+      ports:
+        - containerPort: 8080
