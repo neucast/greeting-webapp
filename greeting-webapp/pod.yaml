@@ -1,10 +1,26 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: banxico-greeting-pod
+  name: banxico-greeting-app-pod
+  labels:
+    app: service-ip-cluster
 spec:
   containers:
-    - name: greeting-container
-      image: neucast/greeting-sample:latest
+    - name: banxico-greeting-app-container
+      image: neucast/greeting-app:latest
       ports:
         - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /health-check
+          port: 8080
+        initialDelaySeconds: 10
+        periodSeconds: 5
+#      lifecycle:
+#        postStart:
+#          exec:
+#            command: [ "/bin/sh", "-c","curl \"http://\"" ]
+#        preStop:
+#          exec:
+#            command: [ "/bin/sh", "-c","curl \"http://\"" ]
+
