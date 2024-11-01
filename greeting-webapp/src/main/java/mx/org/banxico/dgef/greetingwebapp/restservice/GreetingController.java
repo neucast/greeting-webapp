@@ -21,7 +21,7 @@ public class GreetingController {
 
     @GetMapping("/health-check")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus healthCheck() {
-        return HttpStatus.OK;
+    public String healthCheck() {
+        return HttpStatus.OK.toString();
     }
 }
